@@ -1,0 +1,133 @@
+# pyramid
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pyramid .css">
+</head>
+<style>
+  *, *::before, *::after {
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0b0303;
+    color: #c0afaf;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    perspective: 800px;
+  *:not(:empty) {
+    transform-style: preserve-3d;
+    }
+}
+
+/*la seance de pyramid */
+
+.scene {
+    position: relative;
+    animation: sceneRotate 70s infinite linear;
+}
+
+/*rotation de body kamil */
+@keyframes sceneRotate {
+    from { transform: translateY(10em) rotateX(-20deg) rotateY(0deg); }
+    to { transform: translateY(10em) rotateX(-15deg) rotateY(-360deg); }
+}
+
+/*la plaque quand pyramid se trouve  c'est la seance */
+
+.floor {
+    position: absolute;
+    inset: -60em;
+    background-image:
+    radial-gradient(closest-side, transparent, #000000),
+    repeating-radial-gradient(circle at calc(cos(0deg) * 25% + 50%) calc(sin(0deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em),
+    repeating-radial-gradient(circle at calc(cos(72deg) * 25% + 50%) calc(sin(72deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em),
+    repeating-radial-gradient(circle at calc(cos(144deg) * 25% + 50%) calc(sin(144deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em),
+    repeating-radial-gradient(circle at calc(cos(216deg) * 25% + 50%) calc(sin(216deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em),
+    repeating-radial-gradient(circle at calc(cos(288deg) * 25% + 50%) calc(sin(288deg) * 25% + 50%), transparent 0, #fdd2, transparent 1em);
+    transform: rotateX(90deg);
+}
+
+/*design de pyramid en general (kbir and sghir ) color , la degree pour rotation and la langeur */
+
+.pyramid {
+    position: absolute;
+    --bricks:
+    linear-gradient(155deg, rgb(230, 238, 21) 0.375em, transparent 0.375em) 0.625em 0.125em / 1em 1em,
+    linear-gradient(155deg, rgb(216, 204, 27) 0.375em, transparent 0.375em) 0.125em 0.625em / 1em 1em,
+    linear-gradient(335deg, rgb(174, 179, 22) 0.375em, transparent 0.375em) 0 0.025em / 1em 1em,
+    linear-gradient(335deg, rgb(178, 180, 17) 0.375em, transparent 0.375em) 0.5em 0.525em / 1em 1em;
+    div {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(10deg, rgba(0, 0, 0, 0.467), #fff3), var(--bricks);
+    background-color: rgb(244, 212, 96);
+    transform-origin: bottom;
+    &:nth-child(2) { --angle: 90deg; }
+    &:nth-child(3) { --angle: 180deg; }
+    &:nth-child(4) { --angle: 270deg; }
+    } 
+    &.top {
+    transform: translateY(-10em);
+    animation: topRotate 50s infinite linear;
+    div {
+    left: -4.5em;
+    width: 9em;
+    aspect-ratio: 1;
+    transform: rotateY(var(--angle, 0)) translateZ(4.5em) rotateX(30deg);
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+    }
+    }
+  /*pour payramid lta7tani li */
+    &.bottom {
+    div {
+    left: -10em;
+    width: 20em;
+    aspect-ratio: 2 / 1;
+    transform: rotateY(var(--angle, 0)) translateZ(10em) rotateX(30deg);
+    clip-path: polygon(0 100%, 25% 0, 75% 0, 100% 100%); 
+    }
+    &::before {
+    content: "";
+    position: absolute;
+    inset: -5em;
+    background: radial-gradient(#000a, 75%, #fff3), var(--bricks);
+    background-color: sandybrown;
+    transform: rotateX(90deg) translateZ(8.66em);
+    }
+    &::after {
+    content: "";
+    position: absolute;
+    inset: -11em;
+    background-color: #0009;
+    transform: rotateX(90deg) translateZ(1px);
+    filter: blur(1em)
+    }
+    }
+}
+
+/*pour  rotation et retourn a zero  pour mini pyramid */
+
+@keyframes topRotate {
+    from { transform: translateY(-11em) rotateY(10deg); }
+    to { transform: translateY(-10em) rotateY(-360deg); }
+}
+</style>
+<body>
+    <div class="scene">
+        <div class="floor"></div>
+        <div class="pyramid bottom">
+          <div></div><div></div><div></div><div></div>
+        </div>
+        <div class="pyramid top">
+          <div></div><div></div><div></div><div></div>
+        </div>
+      </div>
+      
+</body>
+</html>
